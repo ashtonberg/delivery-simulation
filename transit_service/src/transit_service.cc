@@ -100,6 +100,13 @@ public:
         sendMessage(eventData.toString());
     }
 
+    void sendMessageToNotification(const std::string& msg) {
+        JsonObject eventData;
+        eventData["event"] = "Message";
+        eventData["details"] = msg;
+        sendMessage(eventData.toString());
+    }
+
     void stop() {}
 
     bool isAlive(){ return true; }
@@ -125,6 +132,8 @@ public:
     void addEntity(const IEntity& entity) {
         for (int i = 0; i < sessions.size(); i++) {
             static_cast<TransitService*>(sessions[i])->addEntity(entity);
+            static_cast<TransitService*>(sessions[i])->sendMessageToNotification("Hello World!");
+            std::cout << "Hello I am in add entity\n";
         }
     }
     
@@ -137,6 +146,12 @@ public:
     void removeEntity(const IEntity& entity) {
         for (int i = 0; i < sessions.size(); i++) {
             static_cast<TransitService*>(sessions[i])->removeEntity(entity);
+        }
+    }
+
+    void sendMessageToNotification(const std::string& msg) {
+        for (int i = 0; i < sessions.size(); i++) {
+            static_cast<TransitService*>(sessions[i])->sendMessageToNotification(msg);
         }
     }
 

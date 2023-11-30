@@ -104,6 +104,9 @@ $( document ).ready(function() {
           //console.log(data);
           removeEntity(data.details.id);
         }
+        if (data.event == "Message") {
+          addMessage();
+        }
       }
     }
   }
@@ -348,6 +351,16 @@ function loadModels() {
 function stopSimulation()
 {
   api.sendCommand("stopSimulation",{test:"test"});
+}
+
+function addMessage()
+{
+  //additional_string = "Entity #" + data["id"] + string_ending + "\r\n";
+  //notifbar = document.getElementById("notification-bar");
+  //notifbar.textContent += additional_string;
+  notiBar = docutment.getElementById("notification-bar");
+  //notiBar.textContent += "Hello world!";
+  notiBar.insertAdjacentHTML( 'beforeend', "<p>Hello World!</p>" );
 }
 
 function toggleRoutes() {
