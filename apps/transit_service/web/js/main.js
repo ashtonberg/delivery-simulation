@@ -105,7 +105,7 @@ $( document ).ready(function() {
           removeEntity(data.details.id);
         }
         if (data.event == "Message") {
-          addMessage();
+          addMessage(data.details);
         }
       }// end of recieve message if event block
     }
@@ -353,15 +353,14 @@ function stopSimulation()
   api.sendCommand("stopSimulation",{test:"test"});
 }
 
-function addMessage()
+function addMessage(msg)
 {
-  //additional_string = "Entity #" + data["id"] + string_ending + "\r\n";
-  //notifbar = document.getElementById("notification-bar");
-  //notifbar.textContent += additional_string;
-
-  notiBar = docutment.getElementById("notification-bar");
-  //notiBar.textContent += "Hello world!";
-  notiBar.insertAdjacentHTML( 'beforeend', "<p>Hello World!</p>" );
+  // formatting
+  displayMeStr = msg + "\r\n";
+  // get notification bar
+  notifbar = document.getElementById("notification-bar");
+  // add string to it
+  notifbar.textContent += displayMeStr;
 }
 
 function toggleRoutes() {

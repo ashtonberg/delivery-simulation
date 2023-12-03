@@ -132,8 +132,6 @@ public:
     void addEntity(const IEntity& entity) {
         for (int i = 0; i < sessions.size(); i++) {
             static_cast<TransitService*>(sessions[i])->addEntity(entity);
-            static_cast<TransitService*>(sessions[i])->sendMessageToNotification("Hello World!");
-            std::cout << "Hello I am in add entity\n";
         }
     }
     
