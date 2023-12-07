@@ -1,7 +1,7 @@
 #ifndef OBSERVER_H_
 #define OBSERVER_H_
 
-
+#include "SimulationModel.h"
 
 //--------------------  Observer Interface ----------------------------
 

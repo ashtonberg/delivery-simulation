@@ -2,6 +2,8 @@
 #define SUBJECT_H_
 
 #include "IObserver.h"
+#include <string>
+#include <vector>
 
 /**
  * @brief Object to give to classes that need to send notifications
@@ -11,12 +13,12 @@ class Subject {
   /**
    * @brief A constructor for Subject
    **/
-  Subject() {}
+  Subject();
 
   /**
    * @brief A destructor for Subject
    **/
-  ~Subject() {}
+  ~Subject();
 
   /**
    * @brief Function to add an observer to the subject's list
@@ -44,6 +46,9 @@ class Subject {
    * @brief Function to send message to observers
    **/
   void Send();
+
+  std::vector<IObserver*> observers;
+  std::string message;
 
 };
 
