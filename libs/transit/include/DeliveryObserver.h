@@ -9,6 +9,11 @@
 class DeliveryObserver : public IObserver{
  public:
   /**
+   * @brief A constructor for DeliveryObserver
+   **/
+  DeliveryObserver(SimulationModel& sim);
+
+  /**
    * @brief A destructor for DeliveryObserver
    **/
   virtual ~DeliveryObserver() {}
@@ -18,7 +23,7 @@ class DeliveryObserver : public IObserver{
    * 
    * @param msg String containing message to be sent
    **/
-  void update(const std::string& msg);
+  void update(std::string msg);
 
 
 

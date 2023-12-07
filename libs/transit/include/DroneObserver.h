@@ -9,6 +9,11 @@
 class DroneObserver : public IObserver{
  public:
   /**
+   * @brief A constructor for DroneObserver
+   **/
+  DroneObserver(SimulationModel& sim);
+
+  /**
    * @brief A destructor for DroneObserver
    **/
   virtual ~DroneObserver() {}
@@ -18,7 +23,7 @@ class DroneObserver : public IObserver{
    * 
    * @param msg String containing message to be sent
    **/
-  void update(const std::string& msg);
+  void update(std::string msg);
 
 };
 
