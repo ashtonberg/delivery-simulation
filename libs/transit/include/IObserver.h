@@ -1,7 +1,5 @@
-#ifndef OBSERVER_H_
-#define OBSERVER_H_
-
-#include "SimulationModel.h"
+#ifndef IOBSERVER_H_
+#define IOBSERVER_H_
 
 //--------------------  Observer Interface ----------------------------
 
@@ -13,7 +11,7 @@ class IObserver {
   /**
    * @brief A constructor for IObserver
    **/
-  IObserver(SimulationModel& sim);
+  IObserver(SimulationModel* sim);
 
   /**
    * @brief A destructor for IObserver
@@ -27,7 +25,7 @@ class IObserver {
   virtual void update(std::string msg) = 0;
 
 protected:
-  SimulationModel& simModel;
+  SimulationModel* simModel;
 
 };
 

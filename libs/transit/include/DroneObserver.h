@@ -3,20 +3,34 @@
 
 #include "IObserver.h"
 
+class IObserver;
+
 /**
  * @brief class for DroneObserver to get messages from drones
  **/
-class DroneObserver : public IObserver{
+class DroneObserver : public IObserver {
  public:
   /**
-   * @brief A constructor for DroneObserver
+   * @brief A default constructor for DroneObserver
    **/
-  DroneObserver(SimulationModel& sim);
+  DroneObserver();
+
+  /**
+   * @brief A constructor for DroneObserver
+   * 
+   * @param sim simulation model to send messages to
+   **/
+  DroneObserver(SimulationModel* sim);
 
   /**
    * @brief A destructor for DroneObserver
    **/
-  virtual ~DroneObserver() {}
+  ~DroneObserver() {}
+
+  /**
+   * @brief A way to add the simulation model after initialization
+   **/
+  void initSimModel(SimulationModel* sim);
 
   /**
    * @brief Function to send message to simulation model

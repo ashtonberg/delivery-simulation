@@ -2,6 +2,8 @@
 #define SIMULATION_MODEL_H_
 
 #include "CompositeFactory.h"
+//#include "DroneObserver.h"
+//#include "DeliveryObserver.h"
 #include "Drone.h"
 #include "IController.h"
 #include "IEntity.h"

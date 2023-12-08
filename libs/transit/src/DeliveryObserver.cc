@@ -3,10 +3,14 @@
 #include <string>
 
 
-DeliveryObserver::DeliveryObserver(SimulationModel& sim) : IObserver(sim){
+DeliveryObserver::DeliveryObserver(SimulationModel* sim) : IObserver(sim){
     
 }
 
+void DeliveryObserver::initSimModel(SimulationModel* sim){
+    simModel = sim;
+}
+
 void DeliveryObserver::update(std::string msg){
-    this->simModel.sendNotification("Delivery: " + msg);
+    simModel->sendNotification("Delivery: " + msg);
 }

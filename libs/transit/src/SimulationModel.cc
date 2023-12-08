@@ -5,6 +5,8 @@
 #include "RobotFactory.h"
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
+#include "DroneObserver.h"
+#include "DeliveryObserver.h"
 
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
