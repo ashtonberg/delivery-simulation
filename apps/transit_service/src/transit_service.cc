@@ -3,6 +3,7 @@
 #include "WebServer.h"
 #include "SimulationModel.h"
 #include "routing_api.h"
+#include "DroneObserver.h"
 
 //--------------------  Controller ----------------------------
 
@@ -10,7 +11,8 @@
 /// in the model view controller pattern.
 class TransitService : public JsonSession, public IController {
 public:
-    TransitService(SimulationModel& model) : model(model), start(std::chrono::system_clock::now()), time(0.0) {
+    TransitService(SimulationModel& model, DroneObserver& droneObs) 
+        : model(model), droneObs(droneObs), start(std::chrono::system_clock::now()), time(0.0) {
         routing::RoutingAPI api;
         routing::IGraph* graph = api.LoadFromFile("libs/routing/data/umn.osm");
         model.setGraph(graph);
@@ -120,6 +122,9 @@ private:
     double time;
     // Current entities to update
     std::map<int, const IEntity*> updateEntites;
+    // Observers
+    DroneObserver& droneObs;
+    //DeliveryObserver& deliveryObserver;
 };
 
 
@@ -128,7 +133,8 @@ private:
 /// The TransitWebServer holds the simulation and updates sessions.
 class TransitWebServer : public WebServerBase, public IController {
 public:
-	TransitWebServer(int port = 8081, const std::string& webDir = ".") : WebServerBase(port, webDir), model(*this), alive_(true) {}
+	TransitWebServer(int port = 8081, const std::string& webDir = ".")
+    : WebServerBase(port, webDir), model(*this), droneObs(*this), alive_(true) {}
     void addEntity(const IEntity& entity) {
         for (int i = 0; i < sessions.size(); i++) {
             static_cast<TransitService*>(sessions[i])->addEntity(entity);
@@ -163,9 +169,10 @@ public:
     bool isAlive() { return alive_; }
 
 protected:
-	Session* createSession() { return new TransitService(model); }
+	Session* createSession() { return new TransitService(model, droneObs); }
 private:
     SimulationModel model;
+    DroneObserver droneObs;
     bool alive_;
 };
 

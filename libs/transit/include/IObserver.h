@@ -1,7 +1,7 @@
 #ifndef IOBSERVER_H_
 #define IOBSERVER_H_
 
-//--------------------  Observer Interface ----------------------------
+#include "IController.h"
 
 /**
  * @brief class for IController used for transit service. Uses the Model View
@@ -11,7 +11,8 @@ class IObserver {
   /**
    * @brief A constructor for IObserver
    **/
-  IObserver(SimulationModel* sim);
+  IObserver(IController& controller)
+    : controller(controller) {};
 
   /**
    * @brief A destructor for IObserver
@@ -20,12 +21,13 @@ class IObserver {
 
   /**
    * @brief Function to send message to simulation model
+   * 
    * @param msg String containing message to be sent
    **/
   virtual void update(std::string msg) = 0;
 
 protected:
-  SimulationModel* simModel;
+  IController& controller;
 
 };
 

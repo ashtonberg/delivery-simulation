@@ -1,9 +1,8 @@
 #ifndef DELIVERY_OBSERVER_H_
 #define DELIVERY_OBSERVER_H_
 
+#include "IController.h"
 #include "IObserver.h"
-
-class IObserver;
 
 /**
  * @brief class for DeliveryObserver to get messages from deliveries
@@ -13,14 +12,8 @@ class DeliveryObserver : public IObserver {
   /**
    * @brief A default constructor for DeliveryObserver
    **/
-  DeliveryObserver();
-
-  /**
-   * @brief A constructor for DeliveryObserver
-   * 
-   * @param sim simulation model to send messages to
-   **/
-  DeliveryObserver(SimulationModel* sim);
+  DeliveryObserver(IController& controller)
+    : IObserver(controller) {};
 
   /**
    * @brief A destructor for DeliveryObserver
@@ -38,8 +31,6 @@ class DeliveryObserver : public IObserver {
    * @param msg String containing message to be sent
    **/
   void update(std::string msg);
-
-
 
 };
 
