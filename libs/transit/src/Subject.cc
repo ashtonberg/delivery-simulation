@@ -18,7 +18,7 @@ void Subject::Attach(IObserver* newObserver){
     this->observers.push_back(newObserver);
 }
 
-void Subject::Dettach(IObserver* oldObserver){
+void Subject::Dettach(){
     this->observers.pop_back();
 }
 

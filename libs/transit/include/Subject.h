@@ -28,11 +28,10 @@ class Subject {
   void Attach(IObserver* newObserver);
 
   /**
-   * @brief Function to remove an observer from the subject's list
-   * 
-   * @param oldObserver pointer to observer to remove
+   * @brief Function to remove an observer from the subject's list, pops
+   *  the most recently added observer.
    **/
-  void Dettach(IObserver* oldObserver);
+  void Dettach();
 
   /**
    * @brief Function to remove an observer from the subject's list
@@ -45,11 +44,10 @@ class Subject {
 
  private:
   /**
-   * @brief Function to send message to observers
+   * @brief Function to send this->message to observers
    **/
   void Send();
 
-  //const std::string* msg = dynamic_cast<const std::string*>(std::string);
   std::string* message = nullptr;
   
 
