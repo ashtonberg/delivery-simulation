@@ -52,6 +52,13 @@ class Package : public IEntity {
   void initDelivery(Robot* owner);
 
   /**
+   * @brief Returns the name of the owner of this package
+   * 
+   * @returns String name of owner
+  */
+  std::string getOwnerName() const;
+
+  /**
    * @brief Gives the robot/owner this package
   */
   void handOff();
