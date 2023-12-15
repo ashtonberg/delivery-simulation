@@ -5,12 +5,14 @@
 #include "RobotFactory.h"
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
+#include "CarFactory.h"
 
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
   entityFactory.AddFactory(new DroneFactory());
   entityFactory.AddFactory(new PackageFactory());
   entityFactory.AddFactory(new RobotFactory());
+  entityFactory.AddFactory(new CarFactory());
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
 }
