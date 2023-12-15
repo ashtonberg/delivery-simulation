@@ -7,6 +7,9 @@
 #include "IEntity.h"
 #include "Robot.h"
 #include "graph.h"
+#include "CollisionMediator.h"
+#include "CollisionDecorator.h"
+
 #include <deque>
 #include <map>
 #include <set>
@@ -86,6 +89,9 @@ class SimulationModel {
   void removeFromSim(int id);
   const routing::IGraph* graph;
   CompositeFactory entityFactory;
+
+
+  CollisionMediator* collisionMediator;
 };
 
 #endif

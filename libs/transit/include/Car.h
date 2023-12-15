@@ -17,6 +17,7 @@ class Car : public IEntity {
  */
   Car(JsonObject& obj);
 
+~Car();
 
 /**
 * @brief Updates the Human's position
@@ -29,16 +30,17 @@ class Car : public IEntity {
    * @brief gets the current destination of the helicopter
    * @return Vector3 representing the xyz coordinates of the Human's current destination
    */  
-  Vector3 getDestination();
+  //Vector3 getDestination();
 
    /**
    * @brief generates a new random destination for the Human 
    */
-  void setDestination();
+  //void setDestination();
 
  private:
-  Vector3 destination;
-  IStrategy* toDest = nullptr;
+  //Vector3 destination;
+  IStrategy* movement = nullptr;
+  //IStrategy* toDest = nullptr;
 };
 
 #endif

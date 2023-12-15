@@ -15,6 +15,8 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.AddFactory(new CarFactory());
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
+
+  this->collisionMediator = new CollisionMediator();
 }
 
 SimulationModel::~SimulationModel() {
@@ -33,6 +35,12 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
   IEntity* myNewEntity = nullptr;
   if (myNewEntity = entityFactory.CreateEntity(entity)) {
     // Call AddEntity to add it to the view
+    std::string type = entity["type"];
+    if ((type.compare("drone") == 0) || (type.compare("car") == 0)) {
+      myNewEntity = new CollisionDecorator(entity, myNewEntity, this->collisionMediator);
+
+      collisionMediator->addEntity(myNewEntity);
+    }
     myNewEntity->linkModel(this);
     controller.addEntity(*myNewEntity);
     entities[myNewEntity->getId()] = myNewEntity;
