@@ -2,7 +2,7 @@
 #define SIMULATION_MODEL_H_
 
 #include "CompositeFactory.h"
-//#include "DroneObserver.h"
+#include "DroneObserver.h"
 //#include "DeliveryObserver.h"
 #include "Drone.h"
 #include "IController.h"
@@ -90,6 +90,8 @@ class SimulationModel {
 
   std::deque<Package*> scheduledDeliveries;
 
+  DroneObserver* droneObs = nullptr;
+
  protected:
   IController& controller;
   std::map<int, IEntity*> entities;
@@ -97,6 +99,7 @@ class SimulationModel {
   void removeFromSim(int id);
   const routing::IGraph* graph;
   CompositeFactory entityFactory;
+  
 };
 
 #endif

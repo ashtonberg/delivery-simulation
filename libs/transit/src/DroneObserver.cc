@@ -1,9 +1,15 @@
 #include "DroneObserver.h"
 
 #include <string>
+#include "SimulationModel.h"
 
+DroneObserver::DroneObserver() : IObserver() {};
 
+void DroneObserver::linkModel(SimulationModel* model){
+    this->model = model;
+}
 
 void DroneObserver::update(std::string msg){
-    controller.sendMessageToNotification("Drone: " + msg);
+    //printf("BALLLLSSS\n");
+    model->sendNotification(msg);
 }

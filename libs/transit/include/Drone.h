@@ -6,6 +6,7 @@
 #include "IEntity.h"
 #include "IStrategy.h"
 #include "math/vector3.h"
+#include "Subject.h"
 
 class Package;
 
@@ -54,12 +55,15 @@ class Drone : public IEntity {
    */
   Drone& operator=(const Drone& drone) = delete;
 
+  Subject* subject = nullptr;
+
  private:
   bool available = false;
   bool pickedUp = false;
   Package* package = nullptr;
   IStrategy* toPackage = nullptr;
   IStrategy* toFinalDestination = nullptr;
+  
 };
 
 #endif

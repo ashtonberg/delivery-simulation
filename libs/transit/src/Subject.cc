@@ -1,10 +1,17 @@
 #include "Subject.h"
 
+#include <string.h>
 
 Subject::Subject() {
+    this->observers = {};
 }
 
 Subject::~Subject() {
+    while ((this->observers).size()){
+        this->observers.pop_back();
+    }
+    if (this->message)
+        delete this->message;
 }
 
 void Subject::Attach(IObserver* newObserver){
@@ -16,13 +23,16 @@ void Subject::Dettach(IObserver* oldObserver){
 }
 
 void Subject::CreateMessage(std::string message){
-    this->message.clear();
-    this->message = message;
+    if(this->message)
+        delete this->message;
+    this->message = new std::string(message);
+    this->Send();
 }
 
 void Subject::Send(){
+    std::string sendMe = *this->message;
     for (int i = 0; i < (this->observers.size()); ++i){
-        this->observers[i]->update(this->message);
+        this->observers[i]->update(sendMe);
     }
 }
 

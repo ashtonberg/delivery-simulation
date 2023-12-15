@@ -5,8 +5,6 @@
 #include "RobotFactory.h"
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
-#include "DroneObserver.h"
-#include "DeliveryObserver.h"
 
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
@@ -15,6 +13,8 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.AddFactory(new RobotFactory());
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
+  droneObs = new DroneObserver();
+  droneObs->linkModel(this);
 }
 
 SimulationModel::~SimulationModel() {
@@ -23,6 +23,8 @@ SimulationModel::~SimulationModel() {
     delete entity;
   }
   delete graph;
+  
+  delete droneObs;
 }
 
 IEntity* SimulationModel::createEntity(JsonObject& entity) {

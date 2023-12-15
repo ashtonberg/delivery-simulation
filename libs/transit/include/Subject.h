@@ -41,14 +41,17 @@ class Subject {
    **/
   void CreateMessage(std::string message);
 
+  std::vector<IObserver*> observers;
+
  private:
   /**
    * @brief Function to send message to observers
    **/
   void Send();
 
-  std::vector<IObserver*> observers;
-  std::string message;
+  //const std::string* msg = dynamic_cast<const std::string*>(std::string);
+  std::string* message = nullptr;
+  
 
 };
 

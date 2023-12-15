@@ -11,17 +11,20 @@
 #include "DijkstraStrategy.h"
 #include "JumpDecorator.h"
 #include "SpinDecorator.h"
+#include "Subject.h"
 
 #include "Package.h"
 #include "SimulationModel.h"
 
 Drone::Drone(JsonObject& obj) : IEntity(obj) {
   available = true;
+  subject = new Subject();
 }
 
 Drone::~Drone() {
   if (toPackage) delete toPackage;
   if (toFinalDestination) delete toFinalDestination;
+  if (subject) delete subject;
 }
 
 void Drone::getNextDelivery() {
@@ -30,6 +33,8 @@ void Drone::getNextDelivery() {
     model->scheduledDeliveries.pop_front();
 
     if (package) {
+      //printf("HIIIIIIII\n");
+      subject->CreateMessage("Dispatched! :)");
       available = false;
       pickedUp = false;
 
@@ -80,6 +85,11 @@ void Drone::getNextDelivery() {
 }
 
 void Drone::update(double dt) {
+  //model->sendNotification("HI\n");
+  if (!subject->observers.size())
+    subject->Attach(model->droneObs);
+
+
   if (available)
     getNextDelivery();
 
@@ -87,6 +97,7 @@ void Drone::update(double dt) {
     toPackage->move(this, dt);
 
     if (toPackage->isCompleted()) {
+      subject->CreateMessage("Finished delivery :)");
       delete toPackage;
       toPackage = nullptr;
       pickedUp = true;
