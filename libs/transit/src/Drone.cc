@@ -33,8 +33,10 @@ void Drone::getNextDelivery() {
     model->scheduledDeliveries.pop_front();
 
     if (package) {
-      //printf("HIIIIIIII\n");
-      subject->CreateMessage("Dispatched! :)");
+      subject->CreateMessage(
+        "Drone " + this->getName() +
+        " has been dispatched to a package!"
+      );
       available = false;
       pickedUp = false;
 
@@ -85,7 +87,6 @@ void Drone::getNextDelivery() {
 }
 
 void Drone::update(double dt) {
-  //model->sendNotification("HI\n");
   if (!subject->observers.size())
     subject->Attach(model->droneObs);
 
@@ -97,10 +98,14 @@ void Drone::update(double dt) {
     toPackage->move(this, dt);
 
     if (toPackage->isCompleted()) {
-      subject->CreateMessage("Finished delivery :)");
+      
       delete toPackage;
       toPackage = nullptr;
       pickedUp = true;
+      subject->CreateMessage(
+        "Drone " + this->getName() +
+        " has picked up a package!"
+      );
     }
   } else if (toFinalDestination) {
     toFinalDestination->move(this, dt);
@@ -117,6 +122,10 @@ void Drone::update(double dt) {
       package = nullptr;
       available = true;
       pickedUp = false;
+      subject->CreateMessage(
+        "Drone " + this->getName() +
+        " has delivered it's package!"
+      );
     }
   }
 }

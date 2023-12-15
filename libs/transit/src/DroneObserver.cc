@@ -10,6 +10,5 @@ void DroneObserver::linkModel(SimulationModel* model){
 }
 
 void DroneObserver::update(std::string msg){
-    //printf("BALLLLSSS\n");
     model->sendNotification(msg);
 }
