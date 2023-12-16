@@ -2,25 +2,26 @@
 #define INTERSECTION_H
 
 #include "IEntity.h"
-#include "CarIntersectionDecorator.h"
+#include "CollisionDecorator.h"
 #include "math/vector3.h"
 #include <vector>
 #include <queue>
 
-class Intersection {
+class Intersection : public IEntity{
     public:
       Intersection(Vector3 position, double radius);
-      void updateIntersection(double dt);
-      bool getIsClear();
-      void setClear(bool clear);      
+      void updateIntersection(double dt);     
       Vector3 getPosition();
-      void addCarToQueue(CarIntersectionDecorator* car);
+      void addEntityToQueue(CollisionDecorator* entity);
       double getRadius();
+      bool getIsClear();
+      void setClear(bool clear); 
+
     private:
       Vector3 position;
       bool isClear;
       double radius;
-      std::queue<CarIntersectionDecorator*> queue;
+      std::queue<CollisionDecorator*> queue;
 };
 
 #endif

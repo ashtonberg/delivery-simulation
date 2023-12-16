@@ -4,16 +4,18 @@
 #include "math/vector3.h"
 #include <vector>
 #include "Intersection.h"
+#include "IEntity.h"
 
-class CarIntersectionDecorator;
 
 class IntersectionMediator {
     public:
       IntersectionMediator();
 
-      void notify(CarIntersectionDecorator*);
+      void notify(IEntity* entity);
 
       void updateIntersections(double dt);
+
+      void addIntersection(Intersection* newIntersection);
 
     private:
       std::vector<Intersection*> intersections;

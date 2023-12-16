@@ -1,23 +1,25 @@
 #include "IntersectionMediator.h"
 
-IntersectionMediator::IntersectionMediator() {
-    //init intersections ?
-}
+IntersectionMediator::IntersectionMediator() {}
 
-void IntersectionMediator::notify(CarIntersectionDecorator* car) {
-    if (car->getIsStopped() == false) {
-        for(int i = 0; i < this->intersections.size(); i++) {
-            Intersection* curIntersection = this->intersections.at(i);
-            if (curIntersection->getPosition().dist(car->getPosition()) < curIntersection->getRadius()) {
-                curIntersection->addCarToQueue(car);
-                break;
-            }
+void IntersectionMediator::notify(CollisionDecorator* entity) {
+    
+    for(int i = 0; i < this->intersections.size(); i++) {
+        Intersection* curIntersection = this->intersections.at(i);
+        if (curIntersection->getPosition().dist(entity->getPosition()) < curIntersection->getRadius()) {
+            curIntersection->addEntityToQueue(entity->getId());
+            break;
         }
     }
+
 }
 
 void IntersectionMediator::updateIntersections(double dt) {
     for(int i = 0; i < this->intersections.size(); i++) {
         this->intersections.at(i)->updateIntersection(dt);
     }
+}
+
+void IntersectionMediator::addIntersection(Intersection* newIntersection) {
+    this->intersections.push_back(newIntersection);
 }

@@ -17,6 +17,7 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.AddFactory(new HelicopterFactory());
 
   this->collisionMediator = new CollisionMediator();
+  this->intersectionMediator = new IntersectionMediator();
 }
 
 SimulationModel::~SimulationModel() {
@@ -40,7 +41,8 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
     myNewEntity->linkModel(this);
 
     if ((type.compare("drone") == 0) || (type.compare("car") == 0)) {
-      CollisionDecorator* tom = new CollisionDecorator(myNewEntity, entity, this->collisionMediator);
+      CollisionDecorator* tom = new CollisionDecorator(myNewEntity,
+      entity, this->collisionMediator, this->intersectionMediator);
       myNewEntity = tom;
       myNewEntity->linkModel(this);
       collisionMediator->addDecorator(tom);

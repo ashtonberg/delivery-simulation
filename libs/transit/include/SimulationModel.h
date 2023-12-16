@@ -9,6 +9,7 @@
 #include "graph.h"
 #include "CollisionMediator.h"
 #include "CollisionDecorator.h"
+#include "IntersectionMediator.h"
 
 #include <deque>
 #include <map>
@@ -92,6 +93,7 @@ class SimulationModel {
 
 
   CollisionMediator* collisionMediator;
+  IntersectionMediator* intersectionMediator;
 };
 
 #endif

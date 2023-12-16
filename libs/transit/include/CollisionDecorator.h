@@ -3,18 +3,23 @@
 
 #include "IEntity.h"
 #include "IStrategy.h"
+#include "IntersectionMediator.h"
 
 class CollisionMediator;
 
 class CollisionDecorator : public IEntity{
   public:
-    CollisionDecorator(IEntity* entity, JsonObject& obj, CollisionMediator* colMediator);
+    CollisionDecorator(IEntity* entity, JsonObject& obj, CollisionMediator* colMediator, IntersectionMediator* intMediator);
 
     //~CollisionDecorator();
 
     void colFalse();
 
     void colTrue();
+
+    void setinQueue(bool isInQueue);
+
+    
 
     IEntity* getEntity();
 
@@ -25,6 +30,8 @@ class CollisionDecorator : public IEntity{
     IEntity* entity = nullptr;
     CollisionMediator* colMediator = nullptr;
     bool collision = false;
+    bool inQueue = false;
+    IntersectionMediator* intMediator = nullptr;
 };
 
 #endif
