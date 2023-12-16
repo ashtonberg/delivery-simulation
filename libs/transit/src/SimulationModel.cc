@@ -36,14 +36,18 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
   if (myNewEntity = entityFactory.CreateEntity(entity)) {
     // Call AddEntity to add it to the view
     std::string type = entity["type"];
-    if ((type.compare("drone") == 0) || (type.compare("car") == 0)) {
-      myNewEntity = new CollisionDecorator(entity, myNewEntity, this->collisionMediator);
-
-      collisionMediator->addEntity(myNewEntity);
-    }
+    
     myNewEntity->linkModel(this);
+
+    if ((type.compare("drone") == 0) || (type.compare("car") == 0)) {
+      CollisionDecorator* tom = new CollisionDecorator(myNewEntity, entity, this->collisionMediator);
+      myNewEntity = tom;
+      myNewEntity->linkModel(this);
+      collisionMediator->addDecorator(tom);
+    }
     controller.addEntity(*myNewEntity);
     entities[myNewEntity->getId()] = myNewEntity;
+    
   }
 
   return myNewEntity;
@@ -101,6 +105,9 @@ const routing::IGraph* SimulationModel::getGraph() {
 
 /// Updates the simulation
 void SimulationModel::update(double dt) {
+  collisionMediator->update(dt);
+  collisionMediator->CollisionCheck();
+
   for (auto& [id, entity] : entities) {
     entity->update(dt);
     controller.updateEntity(*entity);

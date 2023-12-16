@@ -2,16 +2,20 @@
 #define COLLISION_MEDIATOR_H_
 
 #include "IEntity.h"
+#include "CollisionDecorator.h"
+
+class CollisionDecorator;
 
 class CollisionMediator {
   public:
     
-    bool isColliding();
-    void addEntity(IEntity* entity);
+    void CollisionCheck();
+    void addDecorator(CollisionDecorator* decorator);
+    void update(double dt);
     
     virtual ~CollisionMediator();
   private:
-    std::vector<IEntity*> entities;
+    std::vector<CollisionDecorator*> decorators;
 };
 
 #endif

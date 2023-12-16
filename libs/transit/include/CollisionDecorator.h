@@ -2,16 +2,23 @@
 #define COLLISION_DECORATOR_H_
 
 #include "IEntity.h"
-#include "CollisionMediator.h"
+#include "IStrategy.h"
 
-class CollisionDecorator : public IEntity {
+class CollisionMediator;
+
+class CollisionDecorator : public IEntity{
   public:
-    CollisionDecorator(JsonObject& obj, IEntity* entity, CollisionMediator* colMediator);
+    CollisionDecorator(IEntity* entity, JsonObject& obj, CollisionMediator* colMediator);
 
     //~CollisionDecorator();
 
-    // void stop();
-    // void go();
+    void colFalse();
+
+    void colTrue();
+
+    IEntity* getEntity();
+
+
     void update(double dt);
 
   private:

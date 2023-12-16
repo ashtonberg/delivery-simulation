@@ -26,25 +26,27 @@ Car::~Car() {
 
 
 void Car::update(double dt) {
-    // if (!toDest) {
-    //     toDest = new AstarStrategy(position, destination, model->getGraph());
-    // }
-    // if (toDest->isCompleted()) {
-    //     this->setDestination();
-    //     delete toDest;
-    //     toDest = new AstarStrategy(position, destination, model->getGraph());
-    // } else {
-    //     toDest->move(this, dt);
-    // }
     if (movement && !movement->isCompleted()) {
         movement->move(this, dt);
+        //std::cout << this->position << std::endl;
     } else {
+        //std::cout << "MOVING ELSE" << std::endl;
         if (movement) delete movement;
         Vector3 dest;
-        dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
-        dest.y = position.y;
-        dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
-        if (model)
-        movement = new AstarStrategy(position, dest, model->getGraph());
+        // dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
+        // dest.y = position.y;
+        // dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
+        dest.x = 686;
+        dest.y = 0;
+        dest.z = 200.6;
+
+
+        //std::cout << "before model" << std::endl;
+        if (model) {
+            //std::cout << "Setting movement" << std::endl;
+            movement = new AstarStrategy(position, dest, model->getGraph());
+            //std::cout << movement << std::endl;
+        }
+            
     }
 }
