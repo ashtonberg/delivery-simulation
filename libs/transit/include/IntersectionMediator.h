@@ -6,12 +6,13 @@
 #include "Intersection.h"
 #include "IEntity.h"
 
+class CollisionDecorator;
 
 class IntersectionMediator {
     public:
       IntersectionMediator();
 
-      void notify(IEntity* entity);
+      void notify(CollisionDecorator* entity);
 
       void updateIntersections(double dt);
 

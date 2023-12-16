@@ -3,13 +3,15 @@
 
 #include "IEntity.h"
 #include "IStrategy.h"
-#include "IntersectionMediator.h"
+
 
 class CollisionMediator;
+class IntersectionMediator;
 
 class CollisionDecorator : public IEntity{
   public:
-    CollisionDecorator(IEntity* entity, JsonObject& obj, CollisionMediator* colMediator, IntersectionMediator* intMediator);
+    CollisionDecorator(IEntity* entity, JsonObject& obj,
+    CollisionMediator* colMediator, IntersectionMediator* intMediator);
 
     //~CollisionDecorator();
 

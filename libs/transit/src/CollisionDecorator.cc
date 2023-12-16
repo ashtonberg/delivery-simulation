@@ -1,4 +1,5 @@
 #include "CollisionDecorator.h"
+#include "IntersectionMediator.h"
 
 CollisionDecorator::CollisionDecorator(IEntity* entity, JsonObject& obj,
 CollisionMediator* colMediator, IntersectionMediator* intMediator) : IEntity(obj){
@@ -28,11 +29,14 @@ void CollisionDecorator::update(double dt) {
         //std::cout << "update" << std::endl;
         if (!inQueue) {
             this->intMediator->notify(this);
+        
+            this->entity->update(dt);
+        
+            this->position = this->entity->getPosition();
+            //std::cout << this->position << std::endl;
+            this->direction = this->entity->getDirection();
         }
         
-        this->entity->update(dt);
-    
-        this->position = this->entity->getPosition();
-        this->direction = this->entity->getDirection();
+        
     }
 }

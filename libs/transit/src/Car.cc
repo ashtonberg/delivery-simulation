@@ -39,7 +39,12 @@ void Car::update(double dt) {
         dest.x = 686;
         dest.y = 0;
         dest.z = 200.6;
-
+        
+        if(this->getName() == "bosscow") {
+            dest.x = 469;
+            dest.y = 270;
+            dest.z = -100.3;
+        }
 
         //std::cout << "before model" << std::endl;
         if (model) {

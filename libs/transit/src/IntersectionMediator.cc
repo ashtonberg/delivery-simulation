@@ -1,13 +1,17 @@
 #include "IntersectionMediator.h"
+#include "CollisionDecorator.h"
 
 IntersectionMediator::IntersectionMediator() {}
 
 void IntersectionMediator::notify(CollisionDecorator* entity) {
-    
+    //std::cout << "notify" << std::endl;
+    //std::cout << this->intersections.size() << std::endl;
     for(int i = 0; i < this->intersections.size(); i++) {
+        //std::cout << "checking intersections" << std::endl;
         Intersection* curIntersection = this->intersections.at(i);
         if (curIntersection->getPosition().dist(entity->getPosition()) < curIntersection->getRadius()) {
-            curIntersection->addEntityToQueue(entity->getId());
+            curIntersection->addEntityToQueue(entity);
+            std::cout << "ADDED TO QUEUE" << std::endl;
             break;
         }
     }
@@ -16,7 +20,7 @@ void IntersectionMediator::notify(CollisionDecorator* entity) {
 
 void IntersectionMediator::updateIntersections(double dt) {
     for(int i = 0; i < this->intersections.size(); i++) {
-        this->intersections.at(i)->updateIntersection(dt);
+        this->intersections.at(i)->update(dt);
     }
 }
 
