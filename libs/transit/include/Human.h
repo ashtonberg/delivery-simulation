@@ -7,8 +7,8 @@
 class Human : public IEntity {
  public:
   /**
-   * @brief Drones are created with a name
-   * @param obj JSON object containing the drone's information
+   * @brief Humans are created with a name
+   * @param obj JSON object containing the human's information
    */
   Human(JsonObject& obj);
 
