@@ -33,12 +33,12 @@ void Car::update(double dt) {
         //std::cout << "MOVING ELSE" << std::endl;
         if (movement) delete movement;
         Vector3 dest;
-        // dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
-        // dest.y = position.y;
-        // dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
-        dest.x = 686;
-        dest.y = 0;
-        dest.z = 200.6;
+        dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
+        dest.y = position.y;
+        dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
+        // dest.x = 686;
+        // dest.y = 0;
+        // dest.z = 200.6;
 
 
         //std::cout << "before model" << std::endl;

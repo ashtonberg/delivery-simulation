@@ -12,7 +12,7 @@ class IntersectionMediator {
     public:
       IntersectionMediator();
 
-      bool notify(CollisionDecorator* entity, double dt);
+      void notify(CollisionDecorator* entity);
 
       void updateIntersections(double dt);
 
@@ -20,7 +20,6 @@ class IntersectionMediator {
 
     private:
       std::vector<Intersection*> intersections;
-      double total_time = 0.0;
 };
 
 #endif

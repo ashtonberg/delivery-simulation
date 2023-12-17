@@ -116,7 +116,7 @@ void SimulationModel::update(double dt) {
   collisionMediator->update(dt);
   collisionMediator->CollisionCheck();
 
-  //intersectionMediator->updateIntersections(dt);
+  intersectionMediator->updateIntersections(dt);
 
   for (auto& [id, entity] : entities) {
     entity->update(dt);

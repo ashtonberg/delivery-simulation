@@ -20,29 +20,23 @@ IEntity* CollisionDecorator::getEntity() {
     return this->entity;
 }
 
-int CollisionDecorator::getStoppedAt() {
-    return this->stoppedAt;
-}
-
-void CollisionDecorator::setStoppedAt(int intersectionId) {
-    this->stoppedAt = intersectionId;
-}
-
 void CollisionDecorator::setinQueue(bool isInQueue) {
     this->inQueue = isInQueue;
 }
 
 void CollisionDecorator::update(double dt) {
-    if (this->collision == false) {
+    if (collision == false) {
         //std::cout << "update" << std::endl;
-            
-        if(this->intMediator->notify(this, dt)) {
+        if (!inQueue) {
+            this->intMediator->notify(this);
+        
             this->entity->update(dt);
         
             this->position = this->entity->getPosition();
             //std::cout << this->position << std::endl;
             this->direction = this->entity->getDirection();
         }
+        
         
     }
 }
