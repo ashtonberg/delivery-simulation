@@ -5,6 +5,7 @@
 #include "RobotFactory.h"
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
+#include "StopSignFactory.h"
 #include "CarFactory.h"
 
 SimulationModel::SimulationModel(IController& controller)
@@ -15,6 +16,7 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.AddFactory(new CarFactory());
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
+  entityFactory.AddFactory(new StopSignFactory());
 
   this->collisionMediator = new CollisionMediator();
   this->intersectionMediator = new IntersectionMediator();
@@ -47,7 +49,7 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
       myNewEntity->linkModel(this);
       collisionMediator->addDecorator(tom);
     }
-    if (type.compare("human") == 0) {
+    if (type.compare("stopsign") == 0) {
       Intersection* jerry = new Intersection(myNewEntity->getPosition(), 30.0, entity);
       this->intersectionMediator->addIntersection(jerry);
     }

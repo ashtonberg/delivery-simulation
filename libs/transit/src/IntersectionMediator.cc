@@ -10,6 +10,7 @@ bool IntersectionMediator::notify(CollisionDecorator* entity, double dt) {
             if (curIntersection->getPosition().dist(entity->getPosition()) < curIntersection->getRadius()) {
                 curIntersection->addEntityToQueue(entity->getId());
                 entity->setStoppedAt(curIntersection->getId());
+                std::cout << "added to queue" << std::endl;
                 return false;
             }
         }

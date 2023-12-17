@@ -19,10 +19,27 @@
   {
     "command": "CreateEntity",
     "params": {
-      "type": "human",
-      "name": "Human-OG",
-      "mesh": "assets/model/human.glb",
-      "position": [599.525, 264, -119.399],
+      "type": "stopsign",
+      "name": "StopSign",
+      "mesh": "assets/model/stop_sign.glb",
+      "position": [611.525, 264, -112.399],
+      "scale": [0.005, 0.005, 0.005],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 0.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, -0.5, 0]
+  }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "stopsign",
+      "name": "StopSign2",
+      "mesh": "assets/model/stop_sign.glb",
+      "position": [500.525, 264, -112.399],
       "scale": [0.005, 0.005, 0.005],
       "rotation": [0, 0, 0, 0],
       "direction": [0.998254,0,-0.0590606],
@@ -43,7 +60,7 @@
       "scale": [0.03, 0.03, 0.03],
       "rotation": [0, 0, 0, 0],
       "direction": [0.998254,0,-0.0590606],
-      "speed": 2.5,
+      "speed": 5,
       "radius": 1.0,
       "start": 2.0,
       "duration": 2.0,
