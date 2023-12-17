@@ -13,6 +13,7 @@ The system is designed to simulate routing and traffic on the University of Minn
 * Packages
 * Humans
 * Helicopters  
+<!-- end list -->
 Users can simulate the delivery of packages with a scheduler page that is seperate (but accessible from) the map.
 
 ### Running The System
@@ -23,7 +24,7 @@ make -j
 // run with ./build/web-app <port> <web folder>
 ./build/web-app 8081 apps/transit_service/web/
 ```
-Those commands start the server. To access the map view, navigate to http://127.0.0.1:&lt;port&gt;, where port is the port you used in the second command. This is the port the server was bound to. To access the scheduler page, navigate to http://127.0.0.1:&lt;port&gt;/schedule.html.
+Those commands start the server. To access the map view, navigate to http://127.0.0.1:\<port\>, where port is the port you used in the second command. This is the port the server was bound to. To access the scheduler page, navigate to http://127.0.0.1:\<port\>/schedule.html.
 
 ### Map View
 The map is a 3D map featuring sattelite images of the university. The horizontal textures on the map (ground/roads, roofs of buildings, etc.) are composed of the sattelite images, while the vertical textures are currently blank.  

@@ -63,7 +63,6 @@ class Drone : public IEntity {
   Package* package = nullptr;
   IStrategy* toPackage = nullptr;
   IStrategy* toFinalDestination = nullptr;
-  
 };
 
 #endif

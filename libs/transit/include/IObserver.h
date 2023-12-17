@@ -35,9 +35,8 @@ class IObserver {
    **/
   virtual void update(std::string msg) = 0;
 
-protected:
+ protected:
   SimulationModel* model = nullptr;
-
 };
 
 #endif

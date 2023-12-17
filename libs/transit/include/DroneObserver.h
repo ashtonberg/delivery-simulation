@@ -33,7 +33,6 @@ class DroneObserver : public IObserver {
    * @param msg String containing message to be sent
    **/
   void update(std::string msg);
-
 };
 
 #endif

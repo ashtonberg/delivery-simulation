@@ -23,7 +23,6 @@ SimulationModel::~SimulationModel() {
     delete entity;
   }
   delete graph;
-  
   delete droneObs;
 }
 

@@ -3,7 +3,6 @@
 
 #include "CompositeFactory.h"
 #include "DroneObserver.h"
-//#include "DeliveryObserver.h"
 #include "Drone.h"
 #include "IController.h"
 #include "IEntity.h"
@@ -99,7 +98,6 @@ class SimulationModel {
   void removeFromSim(int id);
   const routing::IGraph* graph;
   CompositeFactory entityFactory;
-  
 };
 
 #endif

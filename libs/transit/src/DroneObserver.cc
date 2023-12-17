@@ -3,12 +3,12 @@
 #include <string>
 #include "SimulationModel.h"
 
-DroneObserver::DroneObserver() : IObserver() {};
+DroneObserver::DroneObserver() : IObserver() {}
 
-void DroneObserver::linkModel(SimulationModel* model){
+void DroneObserver::linkModel(SimulationModel* model) {
     this->model = model;
 }
 
-void DroneObserver::update(std::string msg){
+void DroneObserver::update(std::string msg) {
     model->sendNotification(msg);
 }

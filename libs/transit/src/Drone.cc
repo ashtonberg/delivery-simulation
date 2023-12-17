@@ -36,8 +36,7 @@ void Drone::getNextDelivery() {
       subject->CreateMessage(
         "Drone " + std::to_string(this->getId()) +
         " has been dispatched to pickup a package for " +
-        this->package->getOwnerName() + "."
-      );
+        this->package->getOwnerName() + ".");
       available = false;
       pickedUp = false;
 
@@ -99,16 +98,14 @@ void Drone::update(double dt) {
     toPackage->move(this, dt);
 
     if (toPackage->isCompleted()) {
-      
       delete toPackage;
       toPackage = nullptr;
       pickedUp = true;
       subject->CreateMessage(
         "Drone " + std::to_string(this->getId()) +
-        " has picked up " + 
+        " has picked up " +
         this->package->getOwnerName() +
-        "'s package."
-      );
+        "'s package.");
     }
   } else if (toFinalDestination) {
     toFinalDestination->move(this, dt);
@@ -122,8 +119,7 @@ void Drone::update(double dt) {
       subject->CreateMessage(
         "Drone " + std::to_string(this->getId()) +
         " has delivered " + this->package->getOwnerName() +
-        "'s package!"
-      );
+        "'s package!");
       delete toFinalDestination;
       toFinalDestination = nullptr;
       package->handOff();

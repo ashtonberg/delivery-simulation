@@ -49,8 +49,6 @@ class Subject {
   void Send();
 
   std::string* message = nullptr;
-  
-
 };
 
 #endif
