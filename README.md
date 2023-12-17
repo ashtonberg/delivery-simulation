@@ -27,10 +27,12 @@ make -j
 Those commands start the server. To access the map view, navigate to http://127.0.0.1:8081. To access the scheduler page, navigate to http://127.0.0.1:8081/schedule.html. If you used a port other than 8081 in the second command, replace 8081 in the links with the port you used.
 
 ### Map View
+![Map view](/images/screenMain.png "Map view")
 The map is a 3D map featuring sattelite images of the university. The horizontal textures on the map (ground/roads, roofs of buildings, etc.) are composed of the sattelite images, while the vertical textures are currently blank.  
 The user has a "birds eye view" of the campus which can be panned, zoomed, and tilted by the user. Certain entities can also be selected to automatically watch. That is, the view will automatically follow the entity as it moves to keep it in the center of the view.
 
 ### Delivery Scheduler
+![Delivery scheduler](/images/screenScheduler.png "Delivery scheduler")
 The system features a delivery scheduler that allows for the simulation of a package being delivered to a destination.
 To schedule a delivery, the user inputs the name of the package's owner, the pathfinding strategy (astar, depth first, etc), and a pickup location and delivery location on the map. Scheduling a delivery will create a package and robot entity then dispatch a drone to pickup and deliver the package to the robot.  
 Users can also create human entities from the scheduler, which require no specific input other than the request for it to be created.
@@ -49,5 +51,6 @@ Human entities exist on the map to represent pedestrians. While most pedistrians
 Helicopter entities exist on the map to represent air traffic. The helicopters operate similarly to the humans in that they pick a random destination and go there, except in the air rather than on the ground. One helicopter is created on startup.  
 
 ### New Feature - Notifications
+![Notifications](/images/screenNotifications.png "Notifications bar shown on the left")
 The new notification feature was added to notify the user of certain events via a translucent notification bar on the left side of the map view.  
 The notifications will allow users to be more aware of all of the events occuring in the simulation. Currently, the system will notify the user when a drone is dispatched to pickup a package, picks up a package, or delivers a package. The implementation of this feature follows the observer pattern, where drones posses a subject object that attaches to a DroneObserver that sends any messages it recieves from the subject object to the UI.
