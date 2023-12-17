@@ -6,6 +6,7 @@
 #include "IEntity.h"
 #include "math/vector3.h"
 #include "util/json.h"
+#include "Subject.h"
 
 class Robot;
 /**
@@ -19,6 +20,11 @@ class Package : public IEntity {
    * @param obj JSON object containing the package's information
    */
   Package(JsonObject& obj);
+
+  /**
+   * @brief Destructor for package
+   */
+  ~Package();
 
   /**
    * @brief Gets the Package's destination
@@ -72,6 +78,7 @@ class Package : public IEntity {
   Vector3 destination;
   std::string strategyName;
   Robot* owner = nullptr;
+  Subject* subject = nullptr;
 };
 
 #endif  // PACKAGE_H

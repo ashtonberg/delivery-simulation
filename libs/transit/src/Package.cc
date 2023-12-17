@@ -1,8 +1,13 @@
 #include "Package.h"
-
 #include "Robot.h"
+#include "SimulationModel.h"
 
 Package::Package(JsonObject &obj) : IEntity(obj) {
+  this->subject = new Subject();
+}
+
+Package::~Package() {
+  if (subject) delete subject;
 }
 
 Vector3 Package::getDestination() const {
@@ -20,18 +25,22 @@ void Package::setStrategyName(std::string strategyName_) {
 void Package::update(double dt) {}
 
 void Package::initDelivery(Robot* owner) {
+  if (!subject->observers.size())
+    subject->Attach(model->deliveryObs);
   this->owner = owner;
   owner->requestedDelivery = false;
   requiresDelivery = false;
   destination = owner->getPosition();
-}
-
-std::string Package::getOwnerName() const {
-  return this->owner->getName();
+  subject->CreateMessage(
+  owner->getName() +
+  "'s Package: Created. ID: " + std::to_string(this->id));
 }
 
 void Package::handOff() {
   if (owner) {
+    subject->CreateMessage(
+    owner->getName() +
+    "'s Package: Delivered! ID: " + std::to_string(this->id));
     owner->receive(this);
   }
 }

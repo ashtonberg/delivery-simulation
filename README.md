@@ -24,7 +24,9 @@ The system is designed to simulate routing and traffic on the University of Minn
 * Robots
 * Packages
 * Humans
-* Helicopters  
+* Helicopters 
+* Stop Signs
+* Cars 
 <!-- end list -->
 Users can simulate the delivery of packages with a scheduler page that is seperate (but accessible from) the map.
 
