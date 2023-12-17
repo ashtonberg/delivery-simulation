@@ -5,14 +5,21 @@
 #include "RobotFactory.h"
 #include "HumanFactory.h"
 #include "HelicopterFactory.h"
+#include "StopSignFactory.h"
+#include "CarFactory.h"
 
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
   entityFactory.AddFactory(new DroneFactory());
   entityFactory.AddFactory(new PackageFactory());
   entityFactory.AddFactory(new RobotFactory());
+  entityFactory.AddFactory(new CarFactory());
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
+  entityFactory.AddFactory(new StopSignFactory());
+
+  this->collisionMediator = new CollisionMediator();
+  this->intersectionMediator = new IntersectionMediator();
 }
 
 SimulationModel::~SimulationModel() {
@@ -31,9 +38,24 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
   IEntity* myNewEntity = nullptr;
   if (myNewEntity = entityFactory.CreateEntity(entity)) {
     // Call AddEntity to add it to the view
+    std::string type = entity["type"];
+    
     myNewEntity->linkModel(this);
+
+    if ((type.compare("drone") == 0) || (type.compare("car") == 0)) {
+      CollisionDecorator* tom = new CollisionDecorator(myNewEntity,
+      entity, this->collisionMediator, this->intersectionMediator);
+      myNewEntity = tom;
+      myNewEntity->linkModel(this);
+      collisionMediator->addDecorator(tom);
+    }
+    if (type.compare("stopsign") == 0) {
+      Intersection* jerry = new Intersection(myNewEntity->getPosition(), 30.0, entity);
+      this->intersectionMediator->addIntersection(jerry);
+    }
     controller.addEntity(*myNewEntity);
     entities[myNewEntity->getId()] = myNewEntity;
+    
   }
 
   return myNewEntity;
@@ -91,6 +113,11 @@ const routing::IGraph* SimulationModel::getGraph() {
 
 /// Updates the simulation
 void SimulationModel::update(double dt) {
+  collisionMediator->update(dt);
+  collisionMediator->CollisionCheck();
+
+  intersectionMediator->updateIntersections(dt);
+
   for (auto& [id, entity] : entities) {
     entity->update(dt);
     controller.updateEntity(*entity);
