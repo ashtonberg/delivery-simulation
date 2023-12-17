@@ -50,13 +50,14 @@ Human entities exist on the map to represent pedestrians. While most pedistrians
 ###### Helicopters
 Helicopter entities exist on the map to represent air traffic. The helicopters operate similarly to the humans in that they pick a random destination and go there, except in the air rather than on the ground. One helicopter is created on startup.  
 
-### New Feature - Notifications
+## New Feature - Notifications
 ![Notifications](/images/screenNotifications.png "Notifications bar shown on the left")
 The new notification feature was added to notify the user of certain events via a translucent notification bar on the left side of the map view.  
 The notifications will allow users to be more aware of all of the events occuring in the simulation. Currently, the system will notify the user when a drone is dispatched to pickup a package, picks up a package, or delivers a package. The implementation of this feature follows the observer pattern, where drones posses a subject object that attaches to a DroneObserver that sends any messages it recieves from the subject object to the UI.
 
-### New Feature - Stop signs
+## New Feature - Stop signs
 ![Mediator](/images/screenMediator.png "Stopsign with cars")
+### NOTE: We were not able to find a 4-way-stopsign model, so intersections are shown by a single stopsign in the middle of the intersection.
 Stop signs were added to the simulation so drones and cars will not collide at intersections. Once a drone or car reaches an intersection it will be add to a queue and be allowed to move through the intersection one by one. Along with intersections, a collider decorator was added to each collidable entity. Two entities that are facing different directions are allowed to pass through each other, but two entities facing the same directions are able to collide.
 
 The stop signs were implemented using the mediator design pattern, which means that collidable entities do not communicate with each other to decide when it is their turn to stop and pass through an intersection. Instead, there exists a intersection mediator that keeps track of every intersection and collidable entity. The mediator then decides which intersection to add the car to and the intersection will tell which car when to stop and when to pass through the intersection. 
