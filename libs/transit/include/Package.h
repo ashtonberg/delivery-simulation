@@ -8,7 +8,10 @@
 #include "util/json.h"
 
 class Robot;
-
+/**
+*@brief Class to define the package that gets delivered by drones
+*@param dt double of how much time has passed
+**/
 class Package : public IEntity {
  public:
   /**

@@ -20,7 +20,6 @@ class TransitService : public JsonSession, public IController {
     /// Handles specific commands from the web server
     void receiveCommand(
         const std::string& cmd, JsonObject& data, JsonObject& returnValue) {
-        // std::cout << cmd << ": " << data << std::endl;
         if (cmd == "CreateEntity") {
             model.createEntity(data);
         } else if (cmd == "ScheduleTrip") {

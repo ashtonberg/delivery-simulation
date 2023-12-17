@@ -35,34 +35,23 @@ CollisionDecorator* Intersection::getCar() {
 
 void Intersection::update(double dt) {
     if (this->isClear && !this->queue.empty()) {
-        //std::cout << "IF" << std::endl;
         this->isClear = false;
         CollisionDecorator* topEntity = this->queue.front();
         this->curCar = topEntity;
-        //std::cout << this->radius << std::endl;
     } else if (this->isClear == false) {
-        //std::cout << "ELSE" << std::endl;
         if (curCar->getPosition().dist(this->position) < (this->radius+5)) {
-            //std::cout << "here1" << std::endl;
-            //std::cout << total_time << std::endl;
-            if (total_time > 1.5){
+            if (total_time > 1.5) {
                 curCar->getEntity()->update(dt * 2);
-                //curCar->getEntity()->update(dt);
-                //std::cout << curCar->getEntity()->getPosition() << std::endl;
                 curCar->setPosition(curCar->getEntity()->getPosition());
                 curCar->setDirection(curCar->getEntity()->getDirection());
-
-                //std::cout << total_time << std::endl;
             }
             total_time += dt;
-        }else {
-            //std::cout << "here2" << std::endl;
+        } else {
             total_time = 0.0;
             curCar->setinQueue(false);
             this->queue.pop();
             //std::cout << "leaving queue" << std::endl;
             this->isClear = true;
         }
-
     }
 }

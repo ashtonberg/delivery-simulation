@@ -9,17 +9,17 @@
  *@brief Stop Sign Factory to produce Stop Sign class.
  **/
 class StopSignFactory : public IEntityFactory {
-  public:
+ public:
     /**
-     * @brief Destructor for StopSignFactory class.
-     **/
-    
+      * @brief Destructor for StopSignFactory class.
+      **/
+
 
     /**
-     * @brief Creates entity using the given JSON object, if possible.
-     * @param entity - JsonObject to be used to create the new entity.
-     * @return Entity that was created if it was created successfully, or a
-     *nullpointer if creation failed.
+      * @brief Creates entity using the given JSON object, if possible.
+      * @param entity - JsonObject to be used to create the new entity.
+      * @return Entity that was created if it was created successfully, or a
+      *nullpointer if creation failed.
     **/
     IEntity* CreateEntity(JsonObject& entity);
 };

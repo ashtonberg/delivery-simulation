@@ -3,7 +3,9 @@
 
 #include "IEntity.h"
 #include "IStrategy.h"
-
+/**
+*@brief Class to define the humans that walk around the simulation
+**/
 class Human : public IEntity {
  public:
   /**
@@ -11,9 +13,14 @@ class Human : public IEntity {
    * @param obj JSON object containing the human's information
    */
   Human(JsonObject& obj);
-
+  /**
+  *@brief Default deconstructor for Human entities
+  **/
   ~Human();
-
+  /**
+  *@brief Updates the status of the entity
+  *@param dt double of how much time has passed
+  **/
   void update(double dt);
 
  private:
