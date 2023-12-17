@@ -10,14 +10,16 @@ class Car;
 
 class Car : public IEntity {
  public:
-/**
- * @brief Cars are created with a name
- * 
- * @param obj JSON object containing the car's information
- */
+  /**
+  * @brief Cars are created with a name
+  * 
+  * @param obj JSON object containing the car's information
+  */
   Car(JsonObject& obj);
-
-~Car();
+  /**
+  *@brief Default deconstructor for car entities
+  **/
+  ~Car();
 
 /**
 * @brief Updates the Human's position

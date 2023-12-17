@@ -41,7 +41,10 @@ class ICelebrationDecorator : public IStrategy {
    * @return True if complete, false if not complete
    */
   virtual bool isCompleted();
-
+  /**
+  *@brief Makes the drone celebrate after successfully delivering a package
+  *@param dt double of how much time has passed
+  **/
   virtual void celebrate(IEntity* entity, double dt) = 0;
 };
 

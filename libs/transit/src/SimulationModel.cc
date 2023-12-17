@@ -17,13 +17,12 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
   entityFactory.AddFactory(new StopSignFactory());
-  
+
   droneObs = new DroneObserver();
   droneObs->linkModel(this);
 
   this->collisionMediator = new CollisionMediator();
   this->intersectionMediator = new IntersectionMediator();
-
 }
 
 SimulationModel::~SimulationModel() {
@@ -44,7 +43,7 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
   if (myNewEntity = entityFactory.CreateEntity(entity)) {
     // Call AddEntity to add it to the view
     std::string type = entity["type"];
-    
+
     myNewEntity->linkModel(this);
 
     if ((type.compare("drone") == 0) || (type.compare("car") == 0)) {
@@ -55,14 +54,13 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
       collisionMediator->addDecorator(tom);
     }
     if (type.compare("stopsign") == 0) {
-      Intersection* jerry = new Intersection(myNewEntity->getPosition(), 30.0, entity);
+      Intersection* jerry = new Intersection(myNewEntity->getPosition(),
+      30.0, entity);
       this->intersectionMediator->addIntersection(jerry);
     }
     controller.addEntity(*myNewEntity);
     entities[myNewEntity->getId()] = myNewEntity;
-    
   }
-
   return myNewEntity;
 }
 
@@ -70,7 +68,7 @@ void SimulationModel::removeEntity(int id) {
   removed.insert(id);
 }
 
-/// Schedules a Delivery for an object in the scene
+// Schedules a Delivery for an object in the scene
 void SimulationModel::scheduleTrip(JsonObject& details) {
   std::string name = details["name"];
   JsonArray start = details["start"];
