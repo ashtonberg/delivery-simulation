@@ -24,7 +24,7 @@ make -j
 // run with ./build/web-app <port> <web folder>
 ./build/web-app 8081 apps/transit_service/web/
 ```
-Those commands start the server. To access the map view, navigate to http://127.0.0.1:<port\>, where port is the port you used in the second command. This is the port the server was bound to. To access the scheduler page, navigate to http://127.0.0.1:<port\>/schedule.html.
+Those commands start the server. To access the map view, navigate to http://127.0.0.1:8081. To access the scheduler page, navigate to http://127.0.0.1:8081/schedule.html. If you used a port other than 8081 in the second command, replace 8081 in the links with the port you used.
 
 ### Map View
 The map is a 3D map featuring sattelite images of the university. The horizontal textures on the map (ground/roads, roofs of buildings, etc.) are composed of the sattelite images, while the vertical textures are currently blank.  
@@ -50,4 +50,4 @@ Helicopter entities exist on the map to represent air traffic. The helicopters o
 
 ### New Feature - Notifications
 The new notification feature was added to notify the user of certain events via a translucent notification bar on the left side of the map view.  
-Currently, the system will notify the user when a drone is dispatched to pickup a package, picks up a package, or delivers a package. The implementation of this feature follows the observer pattern, where drones posses a subject object that attaches to a DroneObserver that sends any messages it recieves from the subject object to the UI.
+The notifications will allow users to be more aware of all of the events occuring in the simulation. Currently, the system will notify the user when a drone is dispatched to pickup a package, picks up a package, or delivers a package. The implementation of this feature follows the observer pattern, where drones posses a subject object that attaches to a DroneObserver that sends any messages it recieves from the subject object to the UI.
