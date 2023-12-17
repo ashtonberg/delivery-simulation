@@ -35,15 +35,3 @@ void Intersection::update(double dt) {}
 void Intersection::addEntityToQueue(int id) {
     this->queue.push(id);
 }
-
-
-bool Intersection::updateIntersection(int entityId) {
-    if (this->queue.front() == entityId) {
-        this->isClear = false;
-        this->queue.pop();
-        return true;
-    } else {
-        return false;
-    }
-
-}

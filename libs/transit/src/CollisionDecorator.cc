@@ -34,13 +34,10 @@ void CollisionDecorator::setinQueue(bool isInQueue) {
 
 void CollisionDecorator::update(double dt) {
     if (this->collision == false) {
-        //std::cout << "update" << std::endl;
-            
+        //notify() return tells the decorator whether it should move or not
         if(this->intMediator->notify(this, dt)) {
             this->entity->update(dt);
-        
             this->position = this->entity->getPosition();
-            //std::cout << this->position << std::endl;
             this->direction = this->entity->getDirection();
         }
         

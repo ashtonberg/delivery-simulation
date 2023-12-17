@@ -14,8 +14,6 @@ class IntersectionMediator {
 
       bool notify(CollisionDecorator* entity, double dt);
 
-      void updateIntersections(double dt);
-
       void addIntersection(Intersection* newIntersection);
 
     private:
