@@ -50,7 +50,6 @@ void Intersection::update(double dt) {
             total_time = 0.0;
             curCar->setinQueue(false);
             this->queue.pop();
-            //std::cout << "leaving queue" << std::endl;
             this->isClear = true;
         }
     }
