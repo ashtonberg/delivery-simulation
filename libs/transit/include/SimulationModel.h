@@ -3,6 +3,7 @@
 
 #include "CompositeFactory.h"
 #include "DroneObserver.h"
+#include "DeliveryObserver.h"
 #include "Drone.h"
 #include "IController.h"
 #include "IEntity.h"
@@ -93,6 +94,7 @@ class SimulationModel {
   std::deque<Package*> scheduledDeliveries;
 
   DroneObserver* droneObs = nullptr;
+  DeliveryObserver* deliveryObs = nullptr;
 
  protected:
   IController& controller;
