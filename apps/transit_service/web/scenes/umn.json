@@ -33,7 +33,23 @@
       "offset": [0, -0.5, 0]
   }
   },
-  
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "stopsign",
+      "name": "StopSign2",
+      "mesh": "assets/model/stop_sign.glb",
+      "position": [498.525, 264, -112],
+      "scale": [0.005, 0.005, 0.005],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 0.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, -0.5, 0]
+  }
+  },
   {
     "command": "CreateEntity",
     "params": {
@@ -71,6 +87,23 @@
   {
     "command": "CreateEntity",
     "params": {
+      "type": "stopsign",
+      "name": "StopSign5",
+      "mesh": "assets/model/stop_sign.glb",
+      "position": [370.525, 264, -112],
+      "scale": [0.005, 0.005, 0.005],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 0.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, -0.5, 0]
+  }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
       "type": "car",
       "name": "bosscow",
       "mesh": "assets/model/car.glb",
@@ -89,13 +122,13 @@
     "command": "CreateEntity",
     "params": {
       "type": "car",
-      "name": "Car-OG",
+      "name": "Car-OG1",
       "mesh": "assets/model/car.glb",
       "position": [540, 270, -228.623],
       "scale": [0.03, 0.03, 0.03],
       "rotation": [0, 0, 0, 0],
       "direction": [0.998254,0,-0.0590606],
-      "speed": 5.0,
+      "speed": 10.0,
       "radius": 1.0,
       "start": 2.0,
       "duration": 2.0,
@@ -106,13 +139,13 @@
     "command": "CreateEntity",
     "params": {
       "type": "car",
-      "name": "Car-OG",
+      "name": "Car-OG2",
       "mesh": "assets/model/car.glb",
-      "position": [480, 270, -228.623],
+      "position": [480, 270, -120.623],
       "scale": [0.03, 0.03, 0.03],
       "rotation": [0, 0, 0, 0],
       "direction": [0.998254,0,-0.0590606],
-      "speed": 5.0,
+      "speed": 10.0,
       "radius": 1.0,
       "start": 2.0,
       "duration": 2.0,
@@ -123,13 +156,132 @@
     "command": "CreateEntity",
     "params": {
       "type": "car",
-      "name": "Car-OG",
+      "name": "Car-OG3",
       "mesh": "assets/model/car.glb",
       "position": [510, 270, -228.623],
       "scale": [0.03, 0.03, 0.03],
       "rotation": [0, 0, 0, 0],
       "direction": [0.998254,0,-0.0590606],
-      "speed": 5.0,
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG4",
+      "mesh": "assets/model/car.glb",
+      "position": [611.525, 264, 112],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG5",
+      "mesh": "assets/model/car.glb",
+      "position": [611.525, 264, 0],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG6",
+      "mesh": "assets/model/car.glb",
+      "position": [611.525, 264, 30],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG7",
+      "mesh": "assets/model/car.glb",
+      "position": [611.525, 264, -170],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG8",
+      "mesh": "assets/model/car.glb",
+      "position": [510.525, 264, -130.399],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG9",
+      "mesh": "assets/model/car.glb",
+      "position": [530.525, 264, -112.399],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, 0, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "car",
+      "name": "Car-OG10",
+      "mesh": "assets/model/car.glb",
+      "position": [470.525, 264, -120.399],
+      "scale": [0.03, 0.03, 0.03],
+      "rotation": [0, 0, 0, 0],
+      "direction": [0.998254,0,-0.0590606],
+      "speed": 10.0,
       "radius": 1.0,
       "start": 2.0,
       "duration": 2.0,
