@@ -20,8 +20,6 @@ SimulationModel::SimulationModel(IController& controller)
   
   droneObs = new DroneObserver();
   droneObs->linkModel(this);
-  deliveryObs = new DeliveryObserver();
-  deliveryObs->linkModel(this);
 
   this->collisionMediator = new CollisionMediator();
   this->intersectionMediator = new IntersectionMediator();
