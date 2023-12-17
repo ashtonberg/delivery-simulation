@@ -10,6 +10,7 @@
 #include "CollisionMediator.h"
 #include "CollisionDecorator.h"
 #include "IntersectionMediator.h"
+#include "Intersection.h"
 
 #include <deque>
 #include <map>

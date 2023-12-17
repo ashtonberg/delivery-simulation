@@ -3,8 +3,8 @@
 
 #include "IEntity.h"
 #include "IStrategy.h"
-#include "IntersectionMediator.h"
 
+class IntersectionMediator;
 class CollisionMediator;
 
 class CollisionDecorator : public IEntity{
@@ -19,7 +19,9 @@ class CollisionDecorator : public IEntity{
 
     void setinQueue(bool isInQueue);
 
-    
+    int getStoppedAt();
+
+    void setStoppedAt(int intersectionId);
 
     IEntity* getEntity();
 
@@ -32,6 +34,7 @@ class CollisionDecorator : public IEntity{
     bool collision = false;
     bool inQueue = false;
     IntersectionMediator* intMediator = nullptr;
+    int stoppedAt = -1;
 };
 
 #endif

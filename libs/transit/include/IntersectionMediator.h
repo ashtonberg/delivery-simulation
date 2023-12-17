@@ -6,12 +6,13 @@
 #include "Intersection.h"
 #include "IEntity.h"
 
+class CollisionDecorator;
 
 class IntersectionMediator {
     public:
       IntersectionMediator();
 
-      void notify(IEntity* entity);
+      bool notify(CollisionDecorator* entity, double dt);
 
       void updateIntersections(double dt);
 
@@ -19,6 +20,7 @@ class IntersectionMediator {
 
     private:
       std::vector<Intersection*> intersections;
+      double total_time = 0.0;
 };
 
 #endif

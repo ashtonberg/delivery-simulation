@@ -16,7 +16,9 @@ void CollisionMediator::CollisionCheck() {
                 entity2 = this->decorators.at(j)->getEntity();
                 //std::cout << entity1->getDirection() << std::endl;
                 //std::cout << entity2->getDirection() << std::endl;
-                if (entity1->getDirection() * entity2->getDirection() > 0){
+                //if (entity1->getDirection() * entity2->getDirection() > 0){
+                //std::cout << (entity1->getDirection() - entity2->getDirection()).magnitude() << std::endl;
+                if ((entity1->getDirection() - entity2->getDirection()).magnitude() < .3){
                     if ( entity1->getPosition().dist(entity2->getPosition()) < 13.0) {
                         //std::cout << entity1->getPosition() << std::endl;
                         //std::cout << entity2->getPosition() << std::endl;

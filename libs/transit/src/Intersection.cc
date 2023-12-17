@@ -1,6 +1,6 @@
 #include "Intersection.h"
 
-Intersection::Intersection(Vector3 position, double radius) {
+Intersection::Intersection(Vector3 position, double radius, JsonObject& entity) : IEntity(entity) {
     this->position = position;
     this->radius = radius;
     this->isClear = true;
@@ -22,19 +22,28 @@ double Intersection::getRadius() {
     return this->radius;
 }
 
-void Intersection::addEntityToQueue(CollisionDecorator* entity) {
-    this->queue.push(entity);
-    entity->setinQueue(true);
+void Intersection::popQueue() {
+    this->queue.pop();
 }
 
-void Intersection::updateIntersection(double dt) {
-    if (this->isClear && this->queue.empty() == false) {
+int Intersection::getFirst() {
+    return this->queue.front();
+}
+
+void Intersection::update(double dt) {}
+
+void Intersection::addEntityToQueue(int id) {
+    this->queue.push(id);
+}
+
+
+bool Intersection::updateIntersection(int entityId) {
+    if (this->queue.front() == entityId) {
         this->isClear = false;
-        CollisionDecorator* topEntity = this->queue.front();
-        while (topEntity->getPosition().dist(this->position) < this->radius) {
-            topEntity->update(dt);
-        }
         this->queue.pop();
-        this->isClear = true;
+        return true;
+    } else {
+        return false;
     }
+
 }

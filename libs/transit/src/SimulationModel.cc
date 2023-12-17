@@ -47,6 +47,10 @@ IEntity* SimulationModel::createEntity(JsonObject& entity) {
       myNewEntity->linkModel(this);
       collisionMediator->addDecorator(tom);
     }
+    if (type.compare("human") == 0) {
+      Intersection* jerry = new Intersection(myNewEntity->getPosition(), 30.0, entity);
+      this->intersectionMediator->addIntersection(jerry);
+    }
     controller.addEntity(*myNewEntity);
     entities[myNewEntity->getId()] = myNewEntity;
     
@@ -109,6 +113,8 @@ const routing::IGraph* SimulationModel::getGraph() {
 void SimulationModel::update(double dt) {
   collisionMediator->update(dt);
   collisionMediator->CollisionCheck();
+
+  //intersectionMediator->updateIntersections(dt);
 
   for (auto& [id, entity] : entities) {
     entity->update(dt);
