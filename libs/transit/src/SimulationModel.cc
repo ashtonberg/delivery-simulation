@@ -17,9 +17,13 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.AddFactory(new HumanFactory());
   entityFactory.AddFactory(new HelicopterFactory());
   entityFactory.AddFactory(new StopSignFactory());
+  
+  droneObs = new DroneObserver();
+  droneObs->linkModel(this);
 
   this->collisionMediator = new CollisionMediator();
   this->intersectionMediator = new IntersectionMediator();
+
 }
 
 SimulationModel::~SimulationModel() {
@@ -28,6 +32,7 @@ SimulationModel::~SimulationModel() {
     delete entity;
   }
   delete graph;
+  delete droneObs;
 }
 
 IEntity* SimulationModel::createEntity(JsonObject& entity) {
@@ -146,4 +151,8 @@ void SimulationModel::removeFromSim(int id) {
     entities.erase(id);
     delete entity;
   }
+}
+
+void SimulationModel::sendNotification(std::string msg) {
+  controller.sendMessageToNotification(msg);
 }

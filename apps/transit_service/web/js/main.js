@@ -104,7 +104,10 @@ $( document ).ready(function() {
           //console.log(data);
           removeEntity(data.details.id);
         }
-      }
+        if (data.event == "Message") {
+          addMessage(data.details);
+        }
+      }// end of recieve message if event block
     }
   }
   catch(exception) {
@@ -348,6 +351,16 @@ function loadModels() {
 function stopSimulation()
 {
   api.sendCommand("stopSimulation",{test:"test"});
+}
+
+function addMessage(msg)
+{
+  // formatting
+  displayMeStr = msg + "\r\n";
+  // get notification bar
+  notifbar = document.getElementById("notification-bar");
+  // add string to it
+  notifbar.textContent += displayMeStr;
 }
 
 function toggleRoutes() {

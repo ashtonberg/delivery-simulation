@@ -11,17 +11,20 @@
 #include "DijkstraStrategy.h"
 #include "JumpDecorator.h"
 #include "SpinDecorator.h"
+#include "Subject.h"
 
 #include "Package.h"
 #include "SimulationModel.h"
 
 Drone::Drone(JsonObject& obj) : IEntity(obj) {
   available = true;
+  subject = new Subject();
 }
 
 Drone::~Drone() {
   if (toPackage) delete toPackage;
   if (toFinalDestination) delete toFinalDestination;
+  if (subject) delete subject;
 }
 
 void Drone::getNextDelivery() {
@@ -30,6 +33,10 @@ void Drone::getNextDelivery() {
     model->scheduledDeliveries.pop_front();
 
     if (package) {
+      subject->CreateMessage(
+        "Drone " + std::to_string(this->getId()) +
+        " has been dispatched to pickup a package for " +
+        this->package->getOwnerName() + ".");
       available = false;
       pickedUp = false;
 
@@ -80,6 +87,10 @@ void Drone::getNextDelivery() {
 }
 
 void Drone::update(double dt) {
+  if (!subject->observers.size())
+    subject->Attach(model->droneObs);
+
+
   if (available)
     getNextDelivery();
 
@@ -90,6 +101,11 @@ void Drone::update(double dt) {
       delete toPackage;
       toPackage = nullptr;
       pickedUp = true;
+      subject->CreateMessage(
+        "Drone " + std::to_string(this->getId()) +
+        " has picked up " +
+        this->package->getOwnerName() +
+        "'s package.");
     }
   } else if (toFinalDestination) {
     toFinalDestination->move(this, dt);
@@ -100,6 +116,10 @@ void Drone::update(double dt) {
     }
 
     if (toFinalDestination->isCompleted()) {
+      subject->CreateMessage(
+        "Drone " + std::to_string(this->getId()) +
+        " has delivered " + this->package->getOwnerName() +
+        "'s package!");
       delete toFinalDestination;
       toFinalDestination = nullptr;
       package->handOff();

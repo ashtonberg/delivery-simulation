@@ -6,6 +6,7 @@
 #include "IEntity.h"
 #include "IStrategy.h"
 #include "math/vector3.h"
+#include "Subject.h"
 
 class Package;
 
@@ -53,6 +54,8 @@ class Drone : public IEntity {
    * so that drones cannot be copied.
    */
   Drone& operator=(const Drone& drone) = delete;
+
+  Subject* subject = nullptr;
 
  private:
   bool available = false;

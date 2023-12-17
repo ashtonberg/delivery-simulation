@@ -45,6 +45,13 @@ class IController {
                                const JsonObject& details) = 0;
 
   /**
+   * @brief Send a message to the notification bar. Automatically adds "\n".
+   * 
+   * @param msg String to send to the notification bar.
+   **/
+  virtual void sendMessageToNotification(const std::string& msg) = 0;
+
+  /**
    * @brief Stops the controller
    * @return Void
    **/

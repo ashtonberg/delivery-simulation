@@ -6,32 +6,32 @@
 
 //--------------------  Controller ----------------------------
 
-/// A Transit Service that communicates with a web page through web sockets.  It also acts as the controller
-/// in the model view controller pattern.
+/// A Transit Service that communicates with a web page through web sockets.
+/// It also acts as the controller in the model view controller pattern.
 class TransitService : public JsonSession, public IController {
-public:
-    TransitService(SimulationModel& model) : model(model), start(std::chrono::system_clock::now()), time(0.0) {
+ public:
+    TransitService(SimulationModel& model)
+        : model(model), start(std::chrono::system_clock::now()), time(0.0) {
         routing::RoutingAPI api;
         routing::IGraph* graph = api.LoadFromFile("libs/routing/data/umn.osm");
         model.setGraph(graph);
     }
 
     /// Handles specific commands from the web server
-    void receiveCommand(const std::string& cmd, JsonObject& data, JsonObject& returnValue) {
+    void receiveCommand(
+        const std::string& cmd, JsonObject& data, JsonObject& returnValue) {
         // std::cout << cmd << ": " << data << std::endl;
         if (cmd == "CreateEntity") {
             model.createEntity(data);
-        }
-        else if (cmd == "ScheduleTrip") {
+        } else if (cmd == "ScheduleTrip") {
             model.scheduleTrip(data);
-        }
-        else if (cmd == "ping") {
+        } else if (cmd == "ping") {
             returnValue["response"] = data;
-        }
-        else if (cmd == "Update") {
+        } else if (cmd == "Update") {
             updateEntites.clear();
 
-            std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+            std::chrono::time_point<std::chrono::system_clock> end =
+                std::chrono::system_clock::now();
             std::chrono::duration<double> diff = end - start;
             double delta = diff.count() - time;
             time += delta;
@@ -43,24 +43,24 @@ public:
                 for (float f = 0.0; f < delta; f+=0.01) {
                     model.update(0.01);
                 }
-            }
-            else {
+            } else {
                 model.update(delta);
             }
 
             for (auto& [id, entity] : updateEntites) {
                 sendEntity("UpdateEntity", *entity);
             }
-        }
-        else if (cmd == "stopSimulation")
-        {
+        } else if (cmd == "stopSimulation") {
             std::cout << "Stop command administered\n";
             model.stop();
         }
     }
 
-    void sendEntity(const std::string& event, const IEntity& entity, bool includeDetails = true) {
-        //JsonObject details = entity.GetDetails();
+    void sendEntity(
+        const std::string& event,
+        const IEntity& entity,
+        bool includeDetails = true) {
+        // JsonObject details = entity.GetDetails();
         JsonObject details;
         if (includeDetails) {
             details["details"] = entity.getDetails();
@@ -73,14 +73,14 @@ public:
         details["pos"] = pos;
         details["dir"] = dir;
         std::string col_ = entity.getColor();
-        if(col_ != "") details["color"] = col_;
+        if (col_ != "") details["color"] = col_;
         sendEventToView(event, details);
     }
 
     void addEntity(const IEntity& entity) {
         sendEntity("AddEntity", entity, true);
     }
-    
+
     void updateEntity(const IEntity& entity) {
         updateEntites[entity.getId()] = &entity;
     }
@@ -100,11 +100,18 @@ public:
         sendMessage(eventData.toString());
     }
 
+    void sendMessageToNotification(const std::string& msg) {
+        JsonObject eventData;
+        eventData["event"] = "Message";
+        eventData["details"] = msg;
+        sendMessage(eventData.toString());
+    }
+
     void stop() {}
 
-    bool isAlive(){ return true; }
+    bool isAlive() { return true; }
 
-private:
+ private:
     // Simulation Model
     SimulationModel& model;
     // Used for tracking time since last update
@@ -120,14 +127,15 @@ private:
 
 /// The TransitWebServer holds the simulation and updates sessions.
 class TransitWebServer : public WebServerBase, public IController {
-public:
-	TransitWebServer(int port = 8081, const std::string& webDir = ".") : WebServerBase(port, webDir), model(*this), alive_(true) {}
+ public:
+    TransitWebServer(int port = 8081, const std::string& webDir = ".")
+    : WebServerBase(port, webDir), model(*this), alive_(true) {}
     void addEntity(const IEntity& entity) {
         for (int i = 0; i < sessions.size(); i++) {
             static_cast<TransitService*>(sessions[i])->addEntity(entity);
         }
     }
-    
+
     void updateEntity(const IEntity& entity) {
         for (int i = 0; i < sessions.size(); i++) {
             static_cast<TransitService*>(sessions[i])->updateEntity(entity);
@@ -140,18 +148,27 @@ public:
         }
     }
 
+    void sendMessageToNotification(const std::string& msg) {
+        for (int i = 0; i < sessions.size(); i++) {
+            static_cast<TransitService*>
+                (sessions[i])->sendMessageToNotification(msg);
+        }
+    }
+
     void sendEventToView(const std::string& event, const JsonObject& details) {
         for (int i = 0; i < sessions.size(); i++) {
-            static_cast<TransitService*>(sessions[i])->sendEventToView(event, details);
+            static_cast<TransitService*>
+                (sessions[i])->sendEventToView(event, details);
         }
     }
 
     void stop() { alive_ = false; }
     bool isAlive() { return alive_; }
 
-protected:
-	Session* createSession() { return new TransitService(model); }
-private:
+ protected:
+    Session* createSession() { return new TransitService(model); }
+
+ private:
     SimulationModel model;
     bool alive_;
 };
@@ -165,9 +182,10 @@ int main(int argc, char**argv) {
         while (server.isAlive()) {
             server.service();
         }
-    }
-    else {
-        std::cout << "Usage: ./build/bin/transit_service <port> apps/transit_service/web/" << std::endl;
+    } else {
+        std::cout <<
+        "Usage: ./build/bin/transit_service <port> apps/transit_service/web/"
+        << std::endl;
     }
 
     return 0;

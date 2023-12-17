@@ -2,6 +2,7 @@
 #define SIMULATION_MODEL_H_
 
 #include "CompositeFactory.h"
+#include "DroneObserver.h"
 #include "Drone.h"
 #include "IController.h"
 #include "IEntity.h"
@@ -82,7 +83,16 @@ class SimulationModel {
   */
   const routing::IGraph* getGraph();
 
+  /**
+   * @brief Sends a message to the notification bar, automatically adds newline to the end.
+   * 
+   * @param msg String to send to the notification bar
+  */
+  void sendNotification(std::string msg);
+
   std::deque<Package*> scheduledDeliveries;
+
+  DroneObserver* droneObs = nullptr;
 
  protected:
   IController& controller;
