@@ -24,6 +24,7 @@ class IObserver {
    * @brief Links this observer to a simulation model,
    *  giving it access to the model's public variables
    *  and functions.
+   * 
    * @param model The simulation model to link.
    */
   virtual void linkModel(SimulationModel* model) = 0;

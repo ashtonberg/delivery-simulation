@@ -23,6 +23,7 @@ class DroneObserver : public IObserver {
    * @brief Links this observer to a simulation model,
    *  giving it access to the model's public variables
    *  and functions.
+   * 
    * @param model The simulation model to link.
    */
   void linkModel(SimulationModel* model);

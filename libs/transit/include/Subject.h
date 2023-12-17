@@ -34,9 +34,9 @@ class Subject {
   void Dettach();
 
   /**
-   * @brief Function to remove an observer from the subject's list
+   * @brief Clear current this->message, replace with passed argument, message
    * 
-   * @param oldObserver pointer to observer to remove
+   * @param message new string to store in this->message
    **/
   void CreateMessage(std::string message);
 

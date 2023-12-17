@@ -82,8 +82,6 @@ class SimulationModel {
    * @brief Sends a message to the notification bar, automatically adds newline to the end.
    * 
    * @param msg String to send to the notification bar
-   *
-   * @returns Void
   */
   void sendNotification(std::string msg);
 
