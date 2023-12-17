@@ -12,7 +12,9 @@ The system is designed to simulate routing and traffic on the University of Minn
 * Robots
 * Packages
 * Humans
-* Helicopters  
+* Helicopters
+* Stop Signs
+* Cars  
 <!-- end list -->
 Users can simulate the delivery of packages with a scheduler page that is seperate (but accessible from) the map.
 
@@ -48,12 +50,16 @@ Package entities exist on the map to represent packages transported in deliverie
 ###### Humans
 Human entities exist on the map to represent pedestrians. While most pedistrians have a specific destination in mind, the human entities choose a destination at random and walk to it, repeating the process on arrival. Their model moves it's legs as it walks. One human is created on startup, but more can be created in the scheduler.
 ###### Helicopters
-Helicopter entities exist on the map to represent air traffic. The helicopters operate similarly to the humans in that they pick a random destination and go there, except in the air rather than on the ground. One helicopter is created on startup.  
+Helicopter entities exist on the map to represent air traffic. The helicopters operate similarly to the humans in that they pick a random destination and go there, except in the air rather than on the ground. The helicopter's rotors are animated. One helicopter is created on startup.  
+###### Stop Signs
+Stop sign entities are motionless entities that represent traffic control devices (i.e. stop signs). They do not move and are not animated. They are created on startup.
+###### Cars
+Car entities are also similar to humans and helicopters, except they are bound to certain routs they can take (roads). They stop at stop signs and have no animation. They are represented by a model resembling the cow from Minecraft, and several of them are created on startup.
 
 ### New Feature - Notifications
 ![Notifications](/images/screenNotifications.png "Notifications bar shown on the left")
 The new notification feature was added to notify the user of certain events via a translucent notification bar on the left side of the map view.  
-The notifications will allow users to be more aware of all of the events occuring in the simulation. Currently, the system will notify the user when a drone is dispatched to pickup a package, picks up a package, or delivers a package. The implementation of this feature follows the observer pattern, where drones posses a subject object that attaches to a DroneObserver that sends any messages it recieves from the subject object to the UI.
+The notifications will allow users to be more aware of all of the events occuring in the simulation. The system will notify the user when a package is created, a drone is dispatched to pickup a package, a drone picks up a package, a package is delivered, or a drone delivers a package. The implementation of this feature follows the observer pattern, where drones posses a subject object that attaches to a DroneObserver or DeliveryObserver that sends any messages it recieves from the subject object to the UI.
 
 ### New Feature - Stop signs
 ![Mediator](/images/screenMediator.png "Stopsign with cars")
