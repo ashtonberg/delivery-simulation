@@ -31,10 +31,12 @@ The system is designed to simulate routing and traffic on the University of Minn
 * Cars 
 <!-- end list -->
 
-## UML Diagram
-![UML Diagram](/images/UMLDiagram.png "UML Diagram")
-This diagram shows the relationships our new features have with each other.
+## UML Diagrams
+![UML Diagram](/images/IntersectionsCollisions.png "UML Diagram")
+This diagram shows the relationships between our new Intersections and Collisions feature.
 
+![UML Diagram](/images/ObserverUML.jpeg "UML Diagram")
+This diagram shows the relationships between our new Notification feature.
 
 Users can simulate the delivery of packages with a scheduler page that is seperate (but accessible from) the map.
 
