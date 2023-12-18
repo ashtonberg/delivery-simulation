@@ -17,6 +17,8 @@ Use this command to run after pulling from docker:
 ```bash
 docker run --rm -it -p 8081:8081 plip02/team-001-29-drone-sim
 ```
+## Project Video YouTube Link
+https://youtu.be/klLH8HH2hgw
 
 ## System Description
 The system is designed to simulate routing and traffic on the University of Minnesota Twin Cities (Minneapolis) campus. It features a 3D map of the campus, and several different entities that exist and move within the map. Currently, the entities include:
