@@ -32,7 +32,7 @@ The system is designed to simulate routing and traffic on the University of Minn
 <!-- end list -->
 
 ## UML Diagrams
-![UML Diagram](/images/IntersectionsCollisions.png "UML Diagram")
+![UML Diagram](/images/IntersectionsCollisionsUML.png "UML Diagram")
 This diagram shows the relationships between our new Intersections and Collisions feature.
 
 ![UML Diagram](/images/ObserverUML.jpeg "UML Diagram")
